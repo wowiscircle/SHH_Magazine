@@ -1,7 +1,76 @@
-import { NextRequest, NextResponse } from "next/server"; import { getLatestIssue,getQrRoute,isAllowedRegistrationUrl } from "@/lib/content"; import { trackServerEvent } from "@/lib/tracking";
-export async function GET(request:NextRequest,{params}:{params:{qrId:string}}){const route=getQrRoute(params.qrId);if(!route){void trackServerEvent({event:"qr_unknown",qr_id:params.qrId,qr_entry_at_utc:new Date().toISOString()}).catch(()=>{});return NextResponse.redirect(new URL("/?notice=unknown-qr",request.url),302)}
- const entry_id=crypto.randomUUID();const qr_entry_at_utc=new Date().toISOString();let destination=route.destination;if(route.issue_id==="latest"&&destination==="/")destination=`/issues/${getLatestIssue().issue_id}`;
- if(route.destination_type==="registration"&&!isAllowedRegistrationUrl(destination)){void trackServerEvent({event:"failed_outbound_allowlist",entry_id,qr_id:route.qr_id,qr_entry_at_utc}).catch(()=>{});return NextResponse.redirect(new URL("/?notice=invalid-destination",request.url),302)}
- void trackServerEvent({event:"qr_entry",entry_id,qr_entry_at_utc,qr_id:route.qr_id,qr_type:route.qr_type,creative_id:route.creative_id,placement_id:route.placement_id,issue_id:route.issue_id,channel:route.qr_type==="print_content"?"print":"digital_signage",destination_type:route.destination_type}).catch(()=>{});
- if(route.destination_type==="registration")void trackServerEvent({event:"outbound_registration",entry_id,qr_id:route.qr_id,creative_id:route.creative_id,placement_id:route.placement_id,issue_id:route.issue_id,occurred_at_utc:qr_entry_at_utc}).catch(()=>{});
- const target=new URL(destination,request.url);if(target.origin===request.nextUrl.origin)target.searchParams.set("entry_id",entry_id);return NextResponse.redirect(target,302)}
+import { NextRequest, NextResponse } from "next/server";
+import {
+  getLatestIssue,
+  getQrRoute,
+  isAllowedRegistrationUrl,
+} from "@/lib/content";
+import { trackServerEvent } from "@/lib/tracking";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { qrId: string } },
+) {
+  const route = getQrRoute(params.qrId);
+  const qrEntryAtUtc = new Date().toISOString();
+
+  if (!route) {
+    void trackServerEvent({
+      event: "qr_unknown",
+      qr_id: params.qrId,
+      qr_entry_at_utc: qrEntryAtUtc,
+    }).catch(() => undefined);
+    return NextResponse.redirect(new URL("/?notice=unknown-qr", request.url), 302);
+  }
+
+  const entryId = crypto.randomUUID();
+  let destination = route.destination;
+  if (route.issue_id === "latest" && destination === "/") {
+    destination = `/issues/${getLatestIssue().issue_id}`;
+  }
+
+  if (
+    route.destination_type === "registration" &&
+    !isAllowedRegistrationUrl(destination)
+  ) {
+    void trackServerEvent({
+      event: "failed_outbound_allowlist",
+      entry_id: entryId,
+      qr_id: route.qr_id,
+      qr_entry_at_utc: qrEntryAtUtc,
+    }).catch(() => undefined);
+    return NextResponse.redirect(
+      new URL("/?notice=invalid-destination", request.url),
+      302,
+    );
+  }
+
+  const context = {
+    entry_id: entryId,
+    qr_id: route.qr_id,
+    creative_id: route.creative_id,
+    placement_id: route.placement_id,
+    issue_id: route.issue_id,
+  };
+  void trackServerEvent({
+    event: "qr_entry",
+    ...context,
+    qr_entry_at_utc: qrEntryAtUtc,
+    qr_type: route.qr_type,
+    channel: route.qr_type === "print_content" ? "print" : "digital_signage",
+    destination_type: route.destination_type,
+  }).catch(() => undefined);
+
+  if (route.destination_type === "registration") {
+    void trackServerEvent({
+      event: "outbound_registration",
+      ...context,
+      occurred_at_utc: qrEntryAtUtc,
+    }).catch(() => undefined);
+  }
+
+  const target = new URL(destination, request.url);
+  if (target.origin === request.nextUrl.origin) {
+    target.searchParams.set("entry_id", entryId);
+  }
+  return NextResponse.redirect(target, 302);
+}

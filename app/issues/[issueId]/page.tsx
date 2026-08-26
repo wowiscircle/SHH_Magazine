@@ -1,3 +1,54 @@
-import type { Metadata } from "next"; import Link from "next/link"; import { notFound } from "next/navigation"; import { Cover } from "@/components/Cover"; import { PublicHeader } from "@/components/PublicHeader"; import { PublicFooter } from "@/components/PublicFooter"; import { getIssue } from "@/lib/content";
-export function generateMetadata({params}:{params:{issueId:string}}):Metadata { const i=getIssue(params.issueId); return i ? {title:`${i.year}年${String(i.month).padStart(2,"0")}月號`,description:i.homepage_summary} : {}; }
-export default function IssuePage({params}:{params:{issueId:string}}){const i=getIssue(params.issueId);if(!i)notFound();return <><PublicHeader/><main className="wrap hero issue-detail"><div><p className="eyebrow">ISSUE · {i.issue_id}</p><h1>{i.homepage_headline}</h1><p className="summary">{i.homepage_summary}</p><div className="actions"><Link className="button primary" href={`/read/${i.issue_id}`}>開始閱讀</Link><Link className="button secondary" href="/issues">返回歷期</Link></div></div><Cover issue={i}/></main><PublicFooter/></>}
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Cover } from "@/components/Cover";
+import { PublicFooter } from "@/components/PublicFooter";
+import { PublicHeader } from "@/components/PublicHeader";
+import { getIssue, safeEntryId } from "@/lib/content";
+
+type Props = {
+  params: { issueId: string };
+  searchParams: { entry_id?: string | string[]; notice?: string };
+};
+
+export function generateMetadata({ params }: Props): Metadata {
+  const issue = getIssue(params.issueId);
+  return issue
+    ? {
+        title: `${issue.year}年${String(issue.month).padStart(2, "0")}月號`,
+        description: issue.homepage_summary,
+      }
+    : {};
+}
+
+export default function IssuePage({ params, searchParams }: Props) {
+  const issue = getIssue(params.issueId);
+  if (!issue) notFound();
+
+  const entryId = safeEntryId(searchParams.entry_id);
+  const readerUrl = `/read/${issue.issue_id}${entryId ? `?entry_id=${entryId}` : ""}`;
+
+  return (
+    <>
+      <PublicHeader />
+      <main className="wrap hero issue-detail">
+        <div>
+          <p className="eyebrow">ISSUE · {issue.issue_id}</p>
+          <h1>{issue.homepage_headline}</h1>
+          <p className="summary">{issue.homepage_summary}</p>
+          {searchParams.notice === "page-pending" && (
+            <p className="notice" role="status">
+              此資訊的實際頁碼尚待編輯資料補齊，您仍可從第一頁開始閱讀。
+            </p>
+          )}
+          <div className="actions">
+            <Link className="button primary" href={readerUrl}>開始閱讀</Link>
+            <Link className="button secondary" href="/issues">返回歷期</Link>
+          </div>
+        </div>
+        <Cover issue={issue} />
+      </main>
+      <PublicFooter />
+    </>
+  );
+}
