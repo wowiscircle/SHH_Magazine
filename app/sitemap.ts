@@ -1,0 +1,1 @@
+import type { MetadataRoute } from "next";import { getPublishedIssues } from "@/lib/content";export default function sitemap():MetadataRoute.Sitemap{const base=process.env.NEXT_PUBLIC_SITE_URL||"http://localhost:3000";return [{url:base},{url:`${base}/issues`},...getPublishedIssues().map(i=>({url:`${base}/issues/${i.issue_id}`,lastModified:new Date(i.publish_date)}))]}
