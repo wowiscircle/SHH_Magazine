@@ -1,0 +1,27 @@
+Read README.md, CODEX.md, ACTION_ITEMS.md, and all files under docs/ before coding.
+
+Build SHH Magazine Pilot as specified.
+
+Critical requirements:
+1. One Next.js app, one deployment, one domain/origin.
+2. `/admin` is a protected route inside the same app.
+3. Public pages contain no visible analytics/admin/debug UI.
+4. Latest Issue is metadata-driven, not hardcoded.
+5. Support demo issues 2026-06, 2026-07, 2026-08 and reserve 2026-09 for Pilot.
+6. Implement Placement QR, Creative × Placement QR, and Print Content QR.
+7. At `/q/[qrId]`, capture server/edge `qr_entry_at_utc` and an opaque `entry_id` before best-effort tracking + redirect.
+8. Treat QR entry time as router request time, not phone camera decode time.
+9. Track separate anonymous interaction sessions with `active_engagement_seconds` and `elapsed_session_seconds`.
+10. Pause active engagement while hidden/idle; suggested idle threshold 30s and heartbeat 15s.
+11. Add protected Admin `Placement × Hour` heatmap and time filters.
+12. Keep Tracking Debug at the bottom of `/admin`, collapsed by default and disabled unless configured.
+13. Implement mobile-first PDF.js Reader with lazy vertical rendering.
+14. Print article QR should track then redirect only to allowlisted official doctor registration URLs.
+15. Use brand color #009fa8.
+16. Tracking failures must never block redirect or reading.
+17. Do not fabricate official issue titles, page numbers, PDF URLs, or doctor links. Keep unknowns configurable and report missing assets.
+18. Use mockup/public-magazine-mockup.html and mockup/admin-analytics-mockup.html as visual direction.
+19. Do not create a second admin app, repo, deployment, subdomain, or port.
+20. Run `npm run lint` and `npm run build`; fix all errors before completion.
+
+Work continuously without asking for confirmation unless a requirement cannot safely be represented as configurable data.
