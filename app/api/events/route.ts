@@ -1,0 +1,2 @@
+import { NextRequest, NextResponse } from "next/server"; import { trackServerEvent } from "@/lib/tracking";
+export async function POST(request:NextRequest){try{const payload=await request.json();if(typeof payload.event!=="string")return NextResponse.json({ok:false},{status:400});await trackServerEvent({...payload,received_at_utc:new Date().toISOString()}).catch(()=>{});return NextResponse.json({ok:true});}catch{return NextResponse.json({ok:false},{status:400})}}
