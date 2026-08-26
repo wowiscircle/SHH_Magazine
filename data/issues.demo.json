@@ -1,0 +1,50 @@
+[
+  {
+    "issue_id": "2026-08",
+    "year": 2026,
+    "month": 8,
+    "publish_date": "2026-08-01",
+    "status": "published",
+    "cover_image": "/demo/covers/2026-08.jpg",
+    "pdf_url": null,
+    "local_pdf_path": "/demo/issues/2026-08.pdf",
+    "cover_title": null,
+    "homepage_headline": "2026 年 8 月號",
+    "homepage_summary": "Demo 階段請以實際醫訊封面主題與編輯摘要取代此文字。",
+    "outpatient_page": null,
+    "shuttle_page": null,
+    "features": []
+  },
+  {
+    "issue_id": "2026-07",
+    "year": 2026,
+    "month": 7,
+    "publish_date": "2026-07-01",
+    "status": "published",
+    "cover_image": "/demo/covers/2026-07.jpg",
+    "pdf_url": null,
+    "local_pdf_path": "/demo/issues/2026-07.pdf",
+    "cover_title": null,
+    "homepage_headline": "2026 年 7 月號",
+    "homepage_summary": "請由實際刊物 metadata 補入。",
+    "outpatient_page": null,
+    "shuttle_page": null,
+    "features": []
+  },
+  {
+    "issue_id": "2026-06",
+    "year": 2026,
+    "month": 6,
+    "publish_date": "2026-06-01",
+    "status": "published",
+    "cover_image": "/demo/covers/2026-06.jpg",
+    "pdf_url": null,
+    "local_pdf_path": "/demo/issues/2026-06.pdf",
+    "cover_title": null,
+    "homepage_headline": "2026 年 6 月號",
+    "homepage_summary": "請由實際刊物 metadata 補入。",
+    "outpatient_page": null,
+    "shuttle_page": null,
+    "features": []
+  }
+]
