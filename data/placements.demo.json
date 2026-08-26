@@ -1,0 +1,5 @@
+[
+  {"placement_id":"STORY","location_name":"故事館","channel":"digital_signage","active":true},
+  {"placement_id":"OPD01","location_name":"一樓門診（Demo）","channel":"digital_signage","active":true},
+  {"placement_id":"ELEV-A","location_name":"A棟電梯（Demo）","channel":"digital_signage","active":true}
+]
