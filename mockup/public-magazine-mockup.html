@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>雙和醫訊｜Public Mockup</title>
+<style>
+:root{--b:#009fa8;--bs:rgba(0,159,168,.14);--ink:#17201d;--m:#687570;--bg:#f6f7f5;--line:#dde4e0;--w:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",sans-serif}
+.wrap{max-width:1160px;margin:auto;padding:0 24px}.nav{height:70px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:11px;font-weight:850}.mark{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--b);color:#fff;font-size:12px}
+button{font:inherit;cursor:pointer}.btn{border:0;border-radius:999px;padding:13px 18px}.primary{background:var(--b);color:#fff}.secondary{background:#fff;border:1px solid var(--line)}
+.hero{padding:62px 0 75px;display:grid;grid-template-columns:1fr .78fr;gap:70px;align-items:center}.ey{color:var(--b);font-size:12px;letter-spacing:.13em;font-weight:850}
+h1{font-size:clamp(46px,6.4vw,80px);line-height:1.02;letter-spacing:-.055em;margin:15px 0}.summary{max-width:620px;color:var(--m);font-size:17px;line-height:1.75}.actions{display:flex;gap:10px;margin-top:25px}
+.cover{aspect-ratio:.72;background:linear-gradient(145deg,#dff1ef,#f2e8dc);border-radius:8px;box-shadow:0 26px 65px rgba(23,48,41,.15);padding:29px;position:relative;overflow:hidden}.ring{position:absolute;width:65%;aspect-ratio:1;border:38px solid rgba(0,159,168,.25);border-radius:50%;right:-8%;top:29%}.cover strong{font-size:27px;position:relative}.cover span{display:block;margin-top:6px;font-size:11px;position:relative}.cover .bottom{position:absolute;bottom:28px;font-size:23px;font-weight:850}
+section{padding:80px 0}.head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:30px}.head h2{font-size:43px;letter-spacing:-.04em;margin:8px 0 0}.head p{max-width:390px;color:var(--m);line-height:1.65}
+.features{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:15px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px;min-height:215px;display:flex;flex-direction:column;justify-content:space-between}.card:first-child{background:#f1ede6}.card h3{font-size:23px;margin:10px 0}.card p{color:var(--m);line-height:1.65}.link{border:0;background:transparent;padding:0;text-align:left;color:var(--b);font-weight:850}
+.archive{background:#fff}.covers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.mc{aspect-ratio:.72;background:linear-gradient(145deg,#e1f1ee,#eee4d8);border-radius:8px;position:relative;padding:20px}.mc:after{content:"雙和醫訊";position:absolute;bottom:20px;left:20px;font-size:20px;font-weight:850}.meta{font-weight:800;margin-top:12px}.sub{font-size:12px;color:var(--m)}
+footer{padding:65px 0;border-top:1px solid var(--line)}footer h2{font-size:50px;letter-spacing:-.045em;margin:0 0 40px}footer div:last-child{color:var(--m);font-size:13px}
+.reader{position:fixed;inset:0;z-index:20;background:#e9eeeb;display:none;overflow:auto}.reader.open{display:block}.tool{position:sticky;top:0;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line)}.tool .wrap{height:62px;display:flex;align-items:center;justify-content:space-between}.pages{max-width:650px;margin:auto;padding:22px 16px 90px}.page{aspect-ratio:.72;background:#fff;margin-bottom:20px;padding:38px;box-shadow:0 5px 18px rgba(20,40,32,.08)}.page:first-child{background:linear-gradient(145deg,#e3f2ef,#f2e8dc)}.lines i{display:block;height:9px;border-radius:6px;background:#dce4e0;margin:10px 0}.lines i:nth-child(3n){width:64%}
+@media(max-width:760px){.wrap{padding:0 18px}.hero{grid-template-columns:1fr;gap:30px;padding-top:38px}.hero .cover{width:min(84%,380px);margin:auto}h1{font-size:48px}.features{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}.covers{grid-template-columns:repeat(3,73%);overflow:auto}footer h2{font-size:38px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="logo"><div class="mark">SHH</div>雙和醫訊</div><button class="btn primary" id="top">開始閱讀</button></div></header>
+<main>
+<div class="wrap hero">
+<div><div class="ey">LATEST ISSUE · 2026 AUGUST</div><h1>本期主題由<br>期刊資料自動帶入。</h1><div class="summary">這裡顯示當期 homepage_headline 與 homepage_summary。一般民眾只會看到閱讀內容，不會看到 Tracking、Dashboard 或管理功能。</div><div class="actions"><button class="btn primary" id="read">開始閱讀</button><button class="btn secondary" onclick="document.querySelector('#focus').scrollIntoView({behavior:'smooth'})">本期焦點</button></div></div>
+<div class="cover"><strong>雙和醫訊</strong><span>SHUANG HO NEWS · 2026.08</span><div class="ring"></div><div class="bottom">實際當期封面</div></div>
+</div>
+<section id="focus"><div class="wrap"><div class="head"><div><div class="ey">THIS ISSUE</div><h2>本期焦點</h2></div><p>每期維護 2–4 個焦點入口，讓掃碼後的人快速抵達真正想看的內容。</p></div><div class="features">
+<div class="card"><div><div class="ey">01 FEATURE</div><h3>當期主題文章</h3><p>標題與一句摘要由 CMS 維護，可直接跳 Reader 指定頁。</p></div><button class="link" id="feature">閱讀專題 →</button></div>
+<div class="card"><div><div class="ey">02 PRACTICAL</div><h3>門診時刻表</h3><p>隨當期醫訊更新，直接跳指定頁。</p></div><button class="link" id="opd">查看門診 →</button></div>
+<div class="card"><div><div class="ey">03 TRANSPORT</div><h3>接駁車資訊</h3><p>直接抵達當期交通資訊。</p></div><button class="link" id="bus">查看接駁 →</button></div>
+</div></div></section>
+<section class="archive"><div class="wrap"><div class="head"><div><div class="ey">ARCHIVE</div><h2>歷期醫訊</h2></div><p>Demo 先展示 2026/06、07、08 三期。</p></div><div class="covers">
+<div><div class="mc">2026.08</div><div class="meta">2026 年 08 月</div><div class="sub">Latest</div></div>
+<div><div class="mc">2026.07</div><div class="meta">2026 年 07 月</div><div class="sub">Issue</div></div>
+<div><div class="mc">2026.06</div><div class="meta">2026 年 06 月</div><div class="sub">Issue</div></div>
+</div></div></section>
+</main>
+<footer><div class="wrap"><h2>健康知識，<br>與你更靠近。</h2><div>雙和醫訊 · Shuang Ho News</div></div></footer>
+<div class="reader" id="reader"><div class="tool"><div class="wrap"><button class="btn secondary" id="close">← 返回</button><strong>2026 AUG</strong><span>1 / 3</span></div></div><div class="pages"><div class="page"><div class="ey">SHUANG HO NEWS</div><h2 style="font-size:38px">雙和醫訊</h2></div><div class="page"><h2>本期專題</h2><div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="page"><h2>門診／接駁資訊</h2><div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+<script>
+const r=document.querySelector('#reader');function openR(){r.classList.add('open');document.body.style.overflow='hidden'}function closeR(){r.classList.remove('open');document.body.style.overflow=''};['#read','#top','#feature','#opd','#bus'].forEach(s=>document.querySelector(s).addEventListener('click',openR));document.querySelector('#close').addEventListener('click',closeR);
+</script>
+</body></html>
