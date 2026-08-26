@@ -1,0 +1,18 @@
+[
+  {
+    "creative_id":"C-202609-003",
+    "issue_id":"2026-09",
+    "creative_name":"2026年9月公播專題 Demo",
+    "destination_type":"reader",
+    "destination":"/issues/2026-09",
+    "active":true
+  },
+  {
+    "creative_id":"A-202609-01",
+    "issue_id":"2026-09",
+    "creative_name":"紙本文章醫師掛號 Demo",
+    "destination_type":"registration",
+    "destination":"https://shh.tmu.edu.tw/",
+    "active":true
+  }
+]
