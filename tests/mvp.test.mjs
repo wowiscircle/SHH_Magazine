@@ -140,3 +140,15 @@ test("the issue archive provides a visible return-home button", async () => {
   assert.match(archive, /className="button secondary" href="\/"/);
   assert.match(archive, /返回首頁/);
 });
+
+test("desktop reader zoom scales beyond its default maximum width", async () => {
+  const [reader, css] = await Promise.all([
+    readFile(new URL("../components/PdfReader.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(reader, /className="pdf-scroll"/);
+  assert.match(reader, /maxWidth: `\$\{scale \* 760\}px`/);
+  assert.match(reader, /overflowX: "auto"/);
+  assert.match(css, /\.pdf-pages\{max-width:760px/);
+});

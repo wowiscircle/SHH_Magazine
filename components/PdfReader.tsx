@@ -101,10 +101,18 @@ export function PdfReader({
       ) : !pdf ? (
         <div className="loading" role="status">正在準備刊物…</div>
       ) : (
-        <div className="pdf-pages" style={{ width: `${scale * 100}%` }}>
-          {Array.from({ length: pdf.numPages }, (_, index) => (
-            <PdfPage pdf={pdf} page={index + 1} key={index} />
-          ))}
+        <div className="pdf-scroll" style={{ width: "100%", overflowX: "auto" }}>
+          <div
+            className="pdf-pages"
+            style={{
+              width: `${scale * 100}%`,
+              maxWidth: `${scale * 760}px`,
+            }}
+          >
+            {Array.from({ length: pdf.numPages }, (_, index) => (
+              <PdfPage pdf={pdf} page={index + 1} key={index} />
+            ))}
+          </div>
         </div>
       )}
     </main>
