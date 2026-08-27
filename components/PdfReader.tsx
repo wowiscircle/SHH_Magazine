@@ -137,6 +137,19 @@ function ReaderError({ issue }: { issue: Issue }) {
 function PdfPage({ pdf, page }: { pdf: PdfDocument; page: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [shouldRender, setShouldRender] = useState(false);
+  const [pageRatio, setPageRatio] = useState<number>();
+
+  useEffect(() => {
+    let cancelled = false;
+    void pdf.getPage(page).then((pdfPage) => {
+      if (cancelled) return;
+      const viewport = pdfPage.getViewport({ scale: 1 });
+      setPageRatio(viewport.width / viewport.height);
+    }).catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, [page, pdf]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -169,8 +182,19 @@ function PdfPage({ pdf, page }: { pdf: PdfDocument; page: number }) {
   }, [shouldRender, page, pdf]);
 
   return (
-    <figure id={`page-${page}`} className="pdf-page">
-      <canvas ref={canvasRef} aria-label={`第 ${page} 頁`} />
+    <figure
+      id={`page-${page}`}
+      className="pdf-page"
+      style={{
+        aspectRatio: pageRatio,
+        minHeight: pageRatio ? 0 : undefined,
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        aria-label={`第 ${page} 頁`}
+        style={{ aspectRatio: pageRatio }}
+      />
       <figcaption>{page}</figcaption>
     </figure>
   );

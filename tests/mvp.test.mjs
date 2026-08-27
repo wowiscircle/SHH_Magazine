@@ -152,3 +152,15 @@ test("desktop reader zoom scales beyond its default maximum width", async () => 
   assert.match(reader, /overflowX: "auto"/);
   assert.match(css, /\.pdf-pages\{max-width:760px/);
 });
+
+test("mobile reader pages use each PDF page's real aspect ratio", async () => {
+  const reader = await readFile(
+    new URL("../components/PdfReader.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(reader, /const \[pageRatio, setPageRatio\] = useState<number>\(\);/);
+  assert.match(reader, /setPageRatio\(viewport\.width \/ viewport\.height\)/);
+  assert.match(reader, /aspectRatio: pageRatio/);
+  assert.match(reader, /minHeight: pageRatio \? 0 : undefined/);
+});
