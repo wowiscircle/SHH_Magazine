@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 
 const loadJson = async (name) => JSON.parse(await readFile(new URL(`../data/${name}`, import.meta.url)));
 
@@ -69,4 +69,74 @@ test("engagement pauses while hidden or idle and flushes on pagehide", async () 
   assert.match(hook, /15_000/);
   assert.match(hook, /visibilitychange/);
   assert.match(hook, /pagehide/);
+});
+
+test("TypeScript resolves the @ alias from the project root", async () => {
+  const tsconfig = JSON.parse(
+    await readFile(new URL("../tsconfig.json", import.meta.url), "utf8"),
+  );
+  assert.equal(tsconfig.compilerOptions.baseUrl, ".");
+  assert.deepEqual(tsconfig.compilerOptions.paths, { "@/*": ["./*"] });
+});
+
+test("all demo issues include a readable PDF and generated cover", async () => {
+  for (const issueId of ["2026-06", "2026-07", "2026-08"]) {
+    const pdfUrl = new URL(`../public/demo/issues/${issueId}.pdf`, import.meta.url);
+    const coverUrl = new URL(`../public/demo/covers/${issueId}.jpg`, import.meta.url);
+    const [pdf, cover, pdfStat, coverStat] = await Promise.all([
+      readFile(pdfUrl),
+      readFile(coverUrl),
+      stat(pdfUrl),
+      stat(coverUrl),
+    ]);
+
+    assert.equal(pdf.subarray(0, 4).toString(), "%PDF");
+    assert.deepEqual([...cover.subarray(0, 3)], [0xff, 0xd8, 0xff]);
+    assert.ok(pdfStat.size > 100_000);
+    assert.ok(coverStat.size > 50_000);
+  }
+});
+
+test("issue cards use large dates, secondary themes, and visible cover shadows", async () => {
+  const issues = await loadJson("issues.demo.json");
+  const expectedHeadlines = {
+    "2026-06": "影像的監控者 影像醫學部",
+    "2026-07": "雙和18 幸福醫家－院慶特輯",
+    "2026-08": "明承經典 燦動非凡",
+  };
+  assert.deepEqual(
+    Object.fromEntries(issues.map((issue) => [issue.issue_id, issue.homepage_headline])),
+    expectedHeadlines,
+  );
+
+  const [home, archive, css] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/issues/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(home, /<strong>\{issue\.year\} 年 \{String\(issue\.month\)/);
+  assert.match(home, /<span>\{issue\.homepage_headline\}/);
+  assert.match(archive, /<strong>\{i\.year\} 年 \{String\(i\.month\)/);
+  assert.match(archive, /<span>\{i\.homepage_headline\}<\/span>/);
+  assert.match(css, /\.cover-small\{box-shadow:(?!none)/);
+});
+
+test("verified practical-information pages are configured for every issue", async () => {
+  const issues = await loadJson("issues.demo.json");
+  for (const issue of issues) {
+    assert.equal(issue.outpatient_page, 10);
+    assert.equal(issue.shuttle_page, 17);
+  }
+
+  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(home, /實際頁碼將由編輯 metadata 提供/);
+});
+
+test("the issue archive provides a visible return-home button", async () => {
+  const archive = await readFile(
+    new URL("../app/issues/page.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.match(archive, /className="button secondary" href="\/"/);
+  assert.match(archive, /返回首頁/);
 });

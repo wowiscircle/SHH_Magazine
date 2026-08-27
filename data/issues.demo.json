@@ -9,10 +9,10 @@
     "pdf_url": null,
     "local_pdf_path": "/demo/issues/2026-08.pdf",
     "cover_title": null,
-    "homepage_headline": "2026 年 8 月號",
+    "homepage_headline": "明承經典 燦動非凡",
     "homepage_summary": "Demo 階段請以實際醫訊封面主題與編輯摘要取代此文字。",
-    "outpatient_page": null,
-    "shuttle_page": null,
+    "outpatient_page": 10,
+    "shuttle_page": 17,
     "features": []
   },
   {
@@ -25,10 +25,10 @@
     "pdf_url": null,
     "local_pdf_path": "/demo/issues/2026-07.pdf",
     "cover_title": null,
-    "homepage_headline": "2026 年 7 月號",
+    "homepage_headline": "雙和18 幸福醫家－院慶特輯",
     "homepage_summary": "請由實際刊物 metadata 補入。",
-    "outpatient_page": null,
-    "shuttle_page": null,
+    "outpatient_page": 10,
+    "shuttle_page": 17,
     "features": []
   },
   {
@@ -41,10 +41,10 @@
     "pdf_url": null,
     "local_pdf_path": "/demo/issues/2026-06.pdf",
     "cover_title": null,
-    "homepage_headline": "2026 年 6 月號",
+    "homepage_headline": "影像的監控者 影像醫學部",
     "homepage_summary": "請由實際刊物 metadata 補入。",
-    "outpatient_page": null,
-    "shuttle_page": null,
+    "outpatient_page": 10,
+    "shuttle_page": 17,
     "features": []
   }
 ]
