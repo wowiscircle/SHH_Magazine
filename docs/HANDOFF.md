@@ -6,6 +6,8 @@ First-time Codex users should begin with `docs/COLLEAGUE_QUICKSTART.md`.
 
 Before connecting Google Apps Script or Google Sheet, follow `docs/QR_ANALYTICS_SETUP.md`.
 
+Before deciding whether the Pilot can remain on Vercel Hobby, read `docs/HOSTING_CAPACITY_AND_QUOTAS.md` for the PDF transfer, tracking-event, Apps Script, and Google Sheet capacity estimates.
+
 ## Repository and deployment
 
 - GitHub: <https://github.com/wowiscircle/SHH_Magazine>
