@@ -48,6 +48,7 @@ magazine.shh.tmu.edu.tw
 - Demo issues: 2026-06, 2026-07, 2026-08
 - Primary public acceptance viewport: 375/390px mobile
 - Current handoff status and known gaps: [`docs/HANDOFF.md`](docs/HANDOFF.md)
+- First-time Codex guide: [`docs/COLLEAGUE_QUICKSTART.md`](docs/COLLEAGUE_QUICKSTART.md)
 
 The PDF reader supports mixed portrait/landscape page ratios, vertical lazy rendering, page links, and button zoom. The repository still uses demo placement/creative data and a best-effort analytics adapter; see the handoff document before creating Pilot QR codes.
 
@@ -69,9 +70,10 @@ Do not commit `.env.local` or real credentials.
 1. 讀 `docs/START_HERE.md`
 2. 讀 `CODEX.md`
 3. 讀 `docs/HANDOFF.md`
-4. 讀 `docs/` 全部產品／追蹤／Reader／部署規格
-5. Mockup 在 `mockup/`
-6. 執行任務依 `ACTION_ITEMS.md`
+4. 第一次使用 Codex 請讀 `docs/COLLEAGUE_QUICKSTART.md`
+5. 讀 `docs/` 全部產品／追蹤／Reader／部署規格
+6. Mockup 在 `mockup/`
+7. 執行任務依 `ACTION_ITEMS.md`
 
 ## Codex
 

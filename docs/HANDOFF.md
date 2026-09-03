@@ -2,6 +2,8 @@
 
 Last verified: 2026-09-03 (Asia/Taipei)
 
+First-time Codex users should begin with `docs/COLLEAGUE_QUICKSTART.md`.
+
 ## Repository and deployment
 
 - GitHub: <https://github.com/wowiscircle/SHH_Magazine>
