@@ -1,6 +1,8 @@
 # CODEX Master Instruction — SHH Magazine Pilot
 
-Read `README.md`, `docs/START_HERE.md`, and all files under `docs/` before coding.
+Read `README.md`, `docs/START_HERE.md`, `docs/HANDOFF.md`, and all files under `docs/` before coding.
+
+This is an existing MVP. Continue from `main`; do not scaffold or rebuild it from scratch. Run the existing validation commands before changing behavior.
 
 ## Non-negotiable architecture
 
@@ -70,6 +72,8 @@ Same creative across different locations keeps the same `creative_id` but uses d
 ## Reader
 
 Use `pdfjs-dist`. Mobile-first, vertical continuous scroll, fit width, lazy rendering, page query routing, branded failure state. No flipbook and no browser-native embedded PDF as the primary reader.
+
+Public Reader acceptance is mobile-first at 375/390px. Preserve each PDF page's real portrait or landscape aspect ratio; do not use a fixed rendered-page height that creates blank space on narrow screens.
 
 ## Latest issue
 

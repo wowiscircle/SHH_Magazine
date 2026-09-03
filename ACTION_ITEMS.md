@@ -1,73 +1,48 @@
 # Action Items
 
-## 現在
+Last updated: 2026-09-03
 
-- [ ] Clone / pull `wowiscircle/SHH_Magazine`
-- [ ] 用 VS Code 開 repo
-- [ ] Codex 先讀 `README.md`、`CODEX.md`、`docs/`
-- [ ] 讓 Codex 初始化 Next.js App
-- [ ] `npm run lint`
-- [ ] `npm run build`
+## MVP completed
 
-## Demo / Public QA
+- [x] One Next.js app for Public, QR Router, Reader, API, and protected Admin.
+- [x] Public homepage, issue archive, and issue detail pages.
+- [x] Real PDFs and covers for 2026-06, 2026-07, and 2026-08.
+- [x] Mobile-first PDF.js Reader with lazy rendering and real per-page aspect ratios.
+- [x] Desktop/mobile zoom controls and horizontal scrolling when enlarged.
+- [x] Metadata-driven latest issue.
+- [x] Outpatient and shuttle semantic routes using verified PDF page indices.
+- [x] Public pages contain no Admin, analytics, or debug entry points.
+- [x] QR route types and allowlisted official registration host validation.
+- [x] Engagement timer pauses while hidden or idle and flushes on page hide.
+- [x] Public Vercel deployment at <https://shh-magazine.vercel.app>.
+- [x] Automated tests, lint, and production build passing at handoff.
 
-- [ ] Public 首頁沒有 Tracking Demo
-- [ ] Public Footer 沒有 Admin 入口
-- [ ] `/admin` 需要驗證
-- [ ] Public / Admin 使用同一 domain
-- [ ] Tracking failure 不影響 QR redirect
-- [ ] Tracking failure 不影響 Reader
+## P0 - before distributing Pilot QR codes
 
-## Time Tracking QA
+- [ ] Add the approved 2026-09 issue metadata, PDF, cover, title, summary, outpatient page, and shuttle page.
+- [ ] Replace demo placements with the confirmed 7-8 public-screen locations.
+- [ ] Confirm the real 2026-09 Creative records and Creative x Placement matrix.
+- [ ] Replace the Print Content placeholder with the approved official doctor registration URL.
+- [ ] Generate and manually scan-test every final QR destination on a 375/390px phone.
+- [ ] Confirm `ADMIN_USERNAME` and `ADMIN_PASSWORD` in Vercel, redeploy, and verify `/admin` returns `401` before login rather than `503`.
+- [ ] Configure a durable analytics destination and confirm events are actually stored.
 
-- [ ] 每個 QR Entry 有 `qr_entry_at_utc`
-- [ ] Admin 顯示 Asia/Taipei
-- [ ] 每個 entry 有 opaque `entry_id`
-- [ ] Reader 建立匿名 session
-- [ ] Active engagement idle 時停止
-- [ ] Page hidden 時停止
-- [ ] 回來後可繼續累積
-- [ ] Admin 有 Placement × Hour Heatmap
-- [ ] Admin 可看 Median Active Engagement
-- [ ] Tracking Debug 預設收合
+## P1 - real analytics and Admin
 
-## 9 月 Pilot 前需要提供
+- [ ] Replace hardcoded Admin demo metrics with real aggregated data.
+- [ ] Connect Placement x Hour, weekday/hour, daily trend, creative/time, and engagement views to real events.
+- [ ] Verify Asia/Taipei conversion against stored UTC timestamps.
+- [ ] Validate QR entry, read start, progress, completion, active time, elapsed time, outbound, and error events end to end.
+- [ ] Add unknown-QR, missing-PDF, analytics-failure, and redirect smoke tests in a deployed environment.
 
-### 1. 7–8 個公播點位
+## Content follow-up
 
-```text
-placement_id
-location_name
-description
-```
+- [ ] Replace placeholder issue summaries.
+- [ ] Populate issue feature cards when editorial content is approved.
+- [ ] Decide whether Pilot PDFs remain in Git or move to an approved public asset host.
 
-### 2. 9 月 Creative
+## Pilot review (after sufficient data)
 
-```text
-creative_id
-creative_name
-issue_id
-destination
-```
-
-### 3. Creative × Placement Matrix
-
-標記每一張素材實際播放在哪些點位，讓系統批次產生不同 QR。
-
-### 4. 紙本文章掛號 URL
-
-只使用官方醫師掛號頁。
-
-### 5. Pilot Hosting
-
-確認 HTTPS、穩定 URL、不連院內內網、不含敏感資料。
-
-### 6. Analytics
-
-建立 GA4 Test Property 或先以 debug adapter 驗證事件。
-
-## Pilot 後（2026/11）
-
-分析：點位 QR 導入、時段熱區、星期差異、同 Creative 跨點位表現、Median Active Engagement、Reader 深度、掛號頁 outbound、Error rate。
-
-再決定正式 Production、官方子網域、Google Sheet CMS、正式 Analytics 整合，以及是否加入「繼續上次閱讀」。
+- [ ] Compare placement, time-of-day, weekday, and creative performance.
+- [ ] Review median active engagement, elapsed session time, read depth, outbound registration, and error rate.
+- [ ] Decide on the official subdomain, information-office deployment, analytics integration, CMS workflow, and optional resume-reading feature.

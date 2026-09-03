@@ -1,27 +1,39 @@
-Read README.md, CODEX.md, ACTION_ITEMS.md, and all files under docs/ before coding.
+You are continuing an existing SHH Magazine MVP. Do not rebuild or scaffold it from scratch.
 
-Build SHH Magazine Pilot as specified.
+Repository:
+https://github.com/wowiscircle/SHH_Magazine
 
-Critical requirements:
-1. One Next.js app, one deployment, one domain/origin.
-2. `/admin` is a protected route inside the same app.
-3. Public pages contain no visible analytics/admin/debug UI.
-4. Latest Issue is metadata-driven, not hardcoded.
-5. Support demo issues 2026-06, 2026-07, 2026-08 and reserve 2026-09 for Pilot.
-6. Implement Placement QR, Creative × Placement QR, and Print Content QR.
-7. At `/q/[qrId]`, capture server/edge `qr_entry_at_utc` and an opaque `entry_id` before best-effort tracking + redirect.
-8. Treat QR entry time as router request time, not phone camera decode time.
-9. Track separate anonymous interaction sessions with `active_engagement_seconds` and `elapsed_session_seconds`.
-10. Pause active engagement while hidden/idle; suggested idle threshold 30s and heartbeat 15s.
-11. Add protected Admin `Placement × Hour` heatmap and time filters.
-12. Keep Tracking Debug at the bottom of `/admin`, collapsed by default and disabled unless configured.
-13. Implement mobile-first PDF.js Reader with lazy vertical rendering.
-14. Print article QR should track then redirect only to allowlisted official doctor registration URLs.
-15. Use brand color #009fa8.
-16. Tracking failures must never block redirect or reading.
-17. Do not fabricate official issue titles, page numbers, PDF URLs, or doctor links. Keep unknowns configurable and report missing assets.
-18. Use mockup/public-magazine-mockup.html and mockup/admin-analytics-mockup.html as visual direction.
-19. Do not create a second admin app, repo, deployment, subdomain, or port.
-20. Run `npm run lint` and `npm run build`; fix all errors before completion.
+Before changing anything:
+1. Clone or pull the latest `main` branch.
+2. Read `AGENTS.md`, `README.md`, `CODEX.md`, `ACTION_ITEMS.md`, `docs/HANDOFF.md`, and all files under `docs/`.
+3. Inspect `git status` and the recent commit history.
+4. Run `npm ci`, `npm test`, `npm run lint`, and `npm run build`.
+5. Report the current state and any mismatch between code, data, documentation, and deployment before implementing new work.
 
-Work continuously without asking for confirmation unless a requirement cannot safely be represented as configurable data.
+Current public preview:
+https://shh-magazine.vercel.app
+
+Current state:
+- The MVP already contains Public pages, QR routing, a PDF.js Reader, event ingestion, and a protected Admin route in one Next.js app.
+- Demo issues 2026-06, 2026-07, and 2026-08 have committed PDFs and covers.
+- The public experience is mobile-first because visitors scan QR codes with phones. Treat 375/390px as the primary acceptance viewport.
+- Preserve each PDF page's real portrait or landscape aspect ratio, lazy vertical rendering, page query routing, and zoom behavior.
+- 2026-09 issue data, final placements, final QR matrix, approved doctor registration URL, durable analytics storage, and real Admin data are not complete.
+- Some demo QR records target the missing 2026-09 issue. Do not print, distribute, or treat them as production QR codes.
+- `/admin` currently returns 503 in the active deployment; verify non-empty Vercel Basic Auth variables and redeploy before Admin QA.
+
+Non-negotiable constraints:
+1. Keep one app, one deployment, and one domain/origin.
+2. Keep `/admin` protected inside the same app.
+3. Public pages must not expose analytics, Admin, tracking-debug, or demo-dashboard UI.
+4. Latest issue and practical-information routes remain metadata-driven.
+5. Tracking failures must never block redirect or reading.
+6. Registration redirects must use an allowlisted official HTTPS hospital host.
+7. Do not fabricate issue titles, page numbers, placement IDs, QR destinations, analytics results, or credentials.
+8. Except for the sanitized `.env.example`, do not commit `.env*`, `.vercel/`, secrets, or personal/patient data.
+9. Use TDD for behavior changes and keep changes small.
+10. Run `npm test`, `npm run lint`, and `npm run build` before handoff.
+11. Do not deploy, change cloud access, or perform destructive actions unless the user explicitly requests it.
+12. Communicate with the project owner in Traditional Chinese; keep code and code comments in English.
+
+Start with the P0 items in `ACTION_ITEMS.md`. If the user has not supplied the real 2026-09 assets and registries, explain exactly what is missing and continue with the safest independent work that does not require fabricated data.

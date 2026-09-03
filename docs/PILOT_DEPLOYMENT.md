@@ -13,6 +13,15 @@
 - 官方醫師掛號 URL
 - anonymous analytics identifiers
 
+Current public MVP:
+
+```text
+https://shh-magazine.vercel.app
+Vercel project: shh10/shh-magazine
+```
+
+This URL is a Pilot preview, not the final hospital subdomain. Vercel deployment-level SSO is disabled so public QR visitors can read without a Vercel account.
+
 禁止：HIS、內網 API、VPN、NAS、病歷、患者／員工個資。
 
 ## Hosting Requirements
@@ -37,6 +46,12 @@ pilot-host.example/admin
 ## September Pilot
 
 全數約 7–8 個公播點位一起切入新版 QR。Pilot 前需要 placement registry、creative registry、Creative × Placement matrix、2026/09 issue metadata、Reader PDF、analytics test configuration。
+
+As of 2026-09-03, the 2026/09 issue, final placement matrix, approved doctor registration URL, and durable analytics destination are not yet configured. Demo QR records that target 2026/09 must not be printed or distributed.
+
+## Current environment status
+
+Vercel contains entries for the environment variable names in `.env.example`, but `/admin` currently returns `503`. Verify that `ADMIN_USERNAME` and `ADMIN_PASSWORD` have non-empty valid values, then redeploy. Never copy credential values into GitHub or this document.
 
 ## Production Handoff
 
