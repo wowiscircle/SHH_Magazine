@@ -25,7 +25,10 @@ Last updated: 2026-09-03
 - [ ] Replace the Print Content placeholder with the approved official doctor registration URL.
 - [ ] Generate and manually scan-test every final QR destination on a 375/390px phone.
 - [ ] Confirm `ADMIN_USERNAME` and `ADMIN_PASSWORD` in Vercel, redeploy, and verify `/admin` returns `401` before login rather than `503`.
-- [ ] Configure a durable analytics destination and confirm events are actually stored.
+- [ ] Obtain the existing Apps Script source, Web App URL, Sheet/tab schema, de-identified sample rows, deployment access settings, and authentication method.
+- [ ] Follow `docs/QR_ANALYTICS_SETUP.md` to map website payloads to Sheet columns before changing code.
+- [ ] Configure a durable analytics destination and confirm `qr_entry`, `read_start`, and `engagement_heartbeat` events are actually stored.
+- [ ] Improve QR-event delivery reliability without allowing tracking failure to block redirect.
 
 ## P1 - real analytics and Admin
 

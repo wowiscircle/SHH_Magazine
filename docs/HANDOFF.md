@@ -4,6 +4,8 @@ Last verified: 2026-09-03 (Asia/Taipei)
 
 First-time Codex users should begin with `docs/COLLEAGUE_QUICKSTART.md`.
 
+Before connecting Google Apps Script or Google Sheet, follow `docs/QR_ANALYTICS_SETUP.md`.
+
 ## Repository and deployment
 
 - GitHub: <https://github.com/wowiscircle/SHH_Magazine>
@@ -35,6 +37,8 @@ The public homepage, archive, issue pages, PDF reader, outpatient route, and shu
 5. `/admin` displays hardcoded demo metrics; it is not connected to real analytics data.
 6. Issue summaries are placeholders and `features` arrays are empty.
 7. Automated tests cover important source and data contracts, but full browser end-to-end coverage is still limited.
+
+The intended analytics path is the existing Google Apps Script Web App writing append-only events to Google Sheet. Its script, endpoint, Sheet schema, and access settings are external and must be supplied before integration work.
 
 ## Local setup
 

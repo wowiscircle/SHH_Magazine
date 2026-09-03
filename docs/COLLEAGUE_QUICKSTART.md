@@ -25,6 +25,12 @@ Codex 會協助 clone repo、閱讀文件、安裝套件及執行測試。如果
 
 一次交代一個小目標最容易確認。若 Codex 提供選項而你不確定，可以請它推薦最安全的方案。
 
+## 要啟用 QR 導入追蹤時
+
+先閱讀 `docs/QR_ANALYTICS_SETUP.md`，不要直接叫 Codex 自行建立新系統。請先準備：既有 Apps Script 程式、Web App URL、Google Sheet 與欄位、去識別化範例列、存取／驗證方式，以及正式點位與 QR 對照資料。
+
+Web App URL、Token 與 Sheet 權限資料不要放進 GitHub。沒有曝光分母時，請使用「QR 導入量」，不要稱為「掃碼率」。
+
 ## 完成前請確認
 
 請 Codex 回報以下四項：

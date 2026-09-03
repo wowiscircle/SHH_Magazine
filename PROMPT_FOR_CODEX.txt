@@ -21,6 +21,8 @@ Current state:
 - 2026-09 issue data, final placements, final QR matrix, approved doctor registration URL, durable analytics storage, and real Admin data are not complete.
 - Some demo QR records target the missing 2026-09 issue. Do not print, distribute, or treat them as production QR codes.
 - `/admin` currently returns 503 in the active deployment; verify non-empty Vercel Basic Auth variables and redeploy before Admin QA.
+- The intended analytics path is the existing Google Apps Script Web App writing events to Google Sheet. Before integration, read `docs/QR_ANALYTICS_SETUP.md` and request the existing script, endpoint, Sheet schema, sample rows, access settings, authentication method, and final QR business mappings. Do not invent or replace the existing integration without reviewing it.
+- Without a trusted exposure denominator, use QR entries/interactions or placement share; never call the metric scan rate.
 
 Non-negotiable constraints:
 1. Keep one app, one deployment, and one domain/origin.
